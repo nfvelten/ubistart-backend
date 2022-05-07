@@ -1,0 +1,41 @@
+generator client {
+  provider = "prisma-client-js"
+  binaryTargets = ["native", "linux-musl"]
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  USER
+  ADMIN
+}
+
+model User {
+  id        String   @id @default(uuid())
+  role      Role     @default(USER)
+  name      String
+  todos     Todo[]
+  email     String   @unique
+  password  String
+  createAt  DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("users")
+}
+
+model Todo {
+  id           String   @id @default(uuid())
+  name         String
+  description  String
+  createAt     DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+  finished     Boolean  @default(false)
+  finishedWhen DateTime @default(now())
+  user         User?    @relation(fields: [userId], references: [id])
+  userId       String
+
+  @@map("todos")
+}
