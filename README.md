@@ -26,10 +26,33 @@
 
 [Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
 
+## Swagger
+
+```bash
+# localhost:3000/api
+```
+
+## Prisma Studio
+```bash
+# localhost:5000
+$ npx prisma studio
+```
+
 ## Installation
 
 ```bash
 $ npm install
+```
+## Create database
+
+```bash
+$ docker-compose up -d
+```
+
+## Migrate the database
+
+```bash
+$ npx prisma migrate dev --name init 
 ```
 
 ## Running the app
@@ -56,6 +79,11 @@ $ npm run test:e2e
 
 # test coverage
 $ npm run test:cov
+```
+
+## Build
+```bash
+$ npm run build
 ```
 
 ## Support
